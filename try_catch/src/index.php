@@ -3,11 +3,13 @@
     <input type="submit" value="submit" name="submit">
 </form>
 <?php
-if(isset($_GET['email'])){
+try{
     if(preg_match("/[a-zA-Z_\.\-0-9]+[@][a-z]+[.][a-z]+/",$_GET['email'])){
         echo "Success";
     }else{
-        echo "Please fill valid email";
+        throw new Exception("Please fill valid email");
     }
+}catch(Exception $e){
+    echo $e->getMessage();
 }
 ?>
